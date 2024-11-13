@@ -1,3 +1,4 @@
+@import "DefaultStyle.scss";
 DefaultHUD {
 	position: absolute;
 	background-color: rgba(0,0,0,0);
@@ -5,13 +6,6 @@ DefaultHUD {
 	border-radius: 20px;
 	width: 100%;
 	height: 100%;
-
-	.title {
-		font-size: 64px;
-		font-family: Poppins;
-		color: #fff;
-		pointer-events: all;
-	}
 
 	.manual {
 		position: absolute;

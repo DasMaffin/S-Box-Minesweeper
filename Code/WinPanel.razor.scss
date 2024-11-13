@@ -1,3 +1,4 @@
+@import "DefaultStyle.scss";
 WinPanel {
 	position: absolute;
 	top: 10%;
@@ -26,8 +27,6 @@ WinPanel {
 
 	.title {
 		font-size: 25px;
-		font-family: Poppins;
-		color: #fff;
 	}
 
 	.button {
