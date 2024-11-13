@@ -52,43 +52,62 @@ public sealed class MineController : Component
 			}
 		}
 	}
+	private HashSet<(int x, int y)> visitedCells = new HashSet<(int x, int y)>();
 
-	// TODO this is the least performant code I think I have ever written. But it works!
+	// TODO this is the least performant code I think I have ever written. It does NOT get more spaghetti than this. But it works! (mostly)
 	private void ShowCell(int xIndex, int yIndex)
 	{
-		if ( MyCell.Shown ) return;
-		MyCell.Shown = true;
+		// Check if the cell is already shown or visited
+		var cell = Grid.GlobalGrid.GetCell(xIndex, yIndex);
+		if ( cell.Shown || visitedCells.Contains((xIndex, yIndex)) ) return;
 
-		int bombs = MyCell.SurroundingBombs(xIndex, yIndex);
+		// Mark as shown and add to visited
+		cell.Shown = true;
+		visitedCells.Add((xIndex, yIndex));
 
-		if ( MyCell.HasBomb )
+		int bombs = cell.SurroundingBombs(xIndex, yIndex);
+
+		if ( cell.HasBomb )
 		{
+			// Set cell tint and trigger loss
 			MyRenderer.Tint = Color.Red;
-
 			GameManager.Instance.GameState = GameState.Loss;
+			return; // Exit recursion immediately on bomb
 		}
-		else if ( bombs == 0 )
+
+		if ( bombs == 0 )
 		{
+			// Set cell tint for empty cells
 			MyRenderer.Tint = Color.White;
-			
+
+			// Recursively show surrounding cells
 			for ( int i = -1; i <= 1; i++ )
 			{
 				for ( int j = -1; j <= 1; j++ )
 				{
 					int xi = xIndex + i;
 					int yj = yIndex + j;
-					if ( xi < 0 || yj < 0 || xi > Grid.GlobalGrid.GridSizeX - 1 || yj > Grid.GlobalGrid.GridSizeY - 1 ) continue;
-					Grid.GlobalGrid.GetCell(xi, yj).GetComponent<MineController>().ShowCell(xi, yj);
+
+					// Skip out-of-bound cells and the current cell
+					if ( xi < 0 || yj < 0 || xi >= Grid.GlobalGrid.GridSizeX || yj >= Grid.GlobalGrid.GridSizeY || (i == 0 && j == 0) )
+						continue;
+
+					Grid.GlobalGrid.GetCell(xi, yj).GetComponent<MineController>()?.ShowCell(xi, yj);
 				}
 			}
 		}
 		else
 		{
+			// Set cell tint and display number of bombs
 			MyRenderer.Tint = Color.Gray;
 			MyTextRenderer.Text = bombs.ToString();
 		}
-		if ( Grid.GlobalGrid.GameFinished() )
+
+		// Check if the game is finished only after all recursion completes
+		if (Grid.GlobalGrid.GameFinished() )
+		{
 			GameManager.Instance.GameState = GameState.Win;
+		}
 	}
 }
 

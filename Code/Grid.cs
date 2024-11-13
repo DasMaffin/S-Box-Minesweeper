@@ -33,7 +33,7 @@ public sealed class GridManager : Component
 
 	public void GenerateGrid()
 	{
-		if ( Grid.GlobalGrid.Count() > 0 )
+		if ( Grid.GlobalGrid?.Count() > 0 )
 		{
 			foreach ( GridCell cell in Grid.GlobalGrid )
 			{

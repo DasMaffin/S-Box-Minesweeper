@@ -47,10 +47,10 @@ public sealed class GameManager : Component
 				case GameState.Gaming:
 					break;
 				case GameState.Win:
-					ToggleWinPanel();
+					EnableWinPanel();
 					break;
 				case GameState.Loss:
-					ToggleLossPanel();
+					EnableLossPanel();
 					break;
 			}
 		}
@@ -85,6 +85,15 @@ public sealed class GameManager : Component
 	public void ToggleLossPanel()
 	{
 		LossPanel.Enabled = !LossPanel.Active;
+	}
+	public void EnableWinPanel()
+	{
+		WinPanel.Enabled = true;
+	}
+
+	public void EnableLossPanel()
+	{
+		LossPanel.Enabled = true;
 	}
 
 	public bool GenerateMinefield()
