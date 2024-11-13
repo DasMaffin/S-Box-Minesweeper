@@ -1,0 +1,74 @@
+SettingsHUD {
+	position: absolute;
+	top: 10%;
+	left: 10%;
+	right: 10%;
+	bottom: 10%;
+	background-color: rgba(128, 128, 128, 0.8); /* Semi-transparent background */
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	border-radius: 20px;
+	font-size: 64px;
+	flex-direction: column;
+	pointer-events: all;
+}
+
+SettingsHUD .close-button {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background-color: #ff5c5c; /* Red button */
+	color: white;
+	border: none;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	font-size: 20px;
+	font-weight: bold;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+SettingsHUD .close-button:hover {
+	background-color: #d9534f; /* Darker red on hover */
+}
+
+SettingsHUD .content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px; /* Spacing between elements */
+	width: 80%;
+}
+
+SettingsHUD .input-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	text-align: left;
+}
+
+SettingsHUD .input-container label {
+	font-size: 26px;
+	font-family: Poppins;
+	color: white;
+	margin-bottom: 5px;
+}
+
+SettingsHUD .input-container TextEntry {
+	width: 100%;
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	font-size: 18px;
+	text-align: left;
+	color: white;
+	background-color: rgba(black, 0.5);
+}
+
+SettingsHUD .input-container TextEntry:focus {
+	border-color: #007bff;
+}

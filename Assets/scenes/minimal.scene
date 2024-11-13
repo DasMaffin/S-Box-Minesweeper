@@ -22,7 +22,7 @@
       "Flags": 0,
       "Name": "Sun",
       "Rotation": "-0.0729315,0.4822396,0.1305433,0.8631827",
-      "Tags": "light_directional,light",
+      "Tags": "light,light_directional",
       "Enabled": true,
       "NetworkMode": 0,
       "Components": [
@@ -211,6 +211,12 @@
             "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
             "component_type": "CameraComponent"
           },
+          "SettingsPanel": {
+            "_type": "component",
+            "component_id": "551ce234-adb1-463a-a57e-78ff692984d6",
+            "go": "91fa33b3-9596-4839-a9e8-77e900dad897",
+            "component_type": "SettingsHUD"
+          },
           "WinPanel": {
             "_type": "component",
             "component_id": "22adad8c-c04f-451b-8d02-34e50c75de5f",
@@ -234,45 +240,111 @@
       ]
     },
     {
-      "__guid": "93d7d773-f926-4a4e-8202-1cabe1b4be93",
+      "__guid": "383c1806-7c36-4ad0-9136-e74f52a4467a",
       "Flags": 0,
       "Name": "UI",
+      "Position": "-359.9702,-199.653,704.9799",
       "Enabled": true,
-      "Components": [
-        {
-          "__type": "Sandbox.ScreenPanel",
-          "__guid": "94b91862-fae6-4148-9b53-9b406c41d008",
-          "AutoScreenScale": true,
-          "Opacity": 1,
-          "Scale": 1,
-          "ScaleStrategy": "ConsistentHeight",
-          "ZIndex": 100
-        }
-      ],
       "Children": [
         {
-          "__guid": "342c91cf-de57-4486-ac96-bcacb4089413",
+          "__guid": "93d7d773-f926-4a4e-8202-1cabe1b4be93",
           "Flags": 0,
-          "Name": "WinPanel",
+          "Name": "GameStates",
+          "Position": "359.9702,199.653,-704.9799",
           "Enabled": true,
-          "NetworkMode": 0,
           "Components": [
             {
-              "__type": "Sandbox.WinPanel",
-              "__guid": "22adad8c-c04f-451b-8d02-34e50c75de5f"
+              "__type": "Sandbox.ScreenPanel",
+              "__guid": "94b91862-fae6-4148-9b53-9b406c41d008",
+              "AutoScreenScale": true,
+              "Opacity": 1,
+              "Scale": 1,
+              "ScaleStrategy": "ConsistentHeight",
+              "ZIndex": 100
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "342c91cf-de57-4486-ac96-bcacb4089413",
+              "Flags": 0,
+              "Name": "WinPanel",
+              "Enabled": true,
+              "NetworkMode": 0,
+              "Components": [
+                {
+                  "__type": "Sandbox.WinPanel",
+                  "__guid": "22adad8c-c04f-451b-8d02-34e50c75de5f"
+                }
+              ]
+            },
+            {
+              "__guid": "59ff9acc-e5e2-4acc-be32-c711c36be922",
+              "Flags": 0,
+              "Name": "LossPanel",
+              "Enabled": true,
+              "NetworkMode": 0,
+              "Components": [
+                {
+                  "__type": "Sandbox.LossPanel",
+                  "__guid": "0eb8bcc0-b4f1-4b7d-96cb-f1a8e5f5c631"
+                }
+              ]
             }
           ]
         },
         {
-          "__guid": "59ff9acc-e5e2-4acc-be32-c711c36be922",
+          "__guid": "ceab2f4c-8dda-4530-b945-d524f58e663a",
           "Flags": 0,
-          "Name": "LossPanel",
+          "Name": "MainUI",
+          "Position": "359.9702,199.653,-704.9799",
           "Enabled": true,
-          "NetworkMode": 0,
           "Components": [
             {
-              "__type": "Sandbox.LossPanel",
-              "__guid": "0eb8bcc0-b4f1-4b7d-96cb-f1a8e5f5c631"
+              "__type": "Sandbox.ScreenPanel",
+              "__guid": "3360d0ad-0d1a-4084-b4eb-c10fab056675",
+              "AutoScreenScale": true,
+              "Opacity": 1,
+              "Scale": 1,
+              "ScaleStrategy": "ConsistentHeight",
+              "ZIndex": 150
+            }
+          ],
+          "Children": [
+            {
+              "__guid": "95d5acfd-263c-4b04-aef4-871b6571b9ad",
+              "Flags": 0,
+              "Name": "DefaultHUD",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "Sandbox.DefaultHUD",
+                  "__guid": "14e7ee4c-0ea8-44b5-b062-621c4697806d"
+                }
+              ]
+            },
+            {
+              "__guid": "91fa33b3-9596-4839-a9e8-77e900dad897",
+              "Flags": 0,
+              "Name": "SettingsHUD",
+              "Enabled": true,
+              "Components": [
+                {
+                  "__type": "SettingsHUD",
+                  "__guid": "551ce234-adb1-463a-a57e-78ff692984d6"
+                }
+              ]
+            },
+            {
+              "__guid": "63cae65a-cbdb-4e62-be27-70f5c2148cf2",
+              "Flags": 0,
+              "Name": "TestUI",
+              "Components": [
+                {
+                  "__type": "Sandbox.TestUI",
+                  "__guid": "efab0c2c-1f28-45a2-8f8d-2f9998d510a3",
+                  "MyStringValue": "Hello World!"
+                }
+              ]
             }
           ]
         }

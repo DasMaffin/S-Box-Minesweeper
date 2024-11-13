@@ -1,0 +1,35 @@
+﻿@using Sandbox.UI
+@inherits PanelComponent
+
+<root>
+    <!-- Close Button -->
+    <div class="close-button" onclick="@(() => GameManagerRazor.Instance.DisableSettingsHUD())">X</div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <!-- Grid Size X -->
+        <div class="input-container">
+            <label for="gridSizeX">Grid Size X:</label>
+            <TextEntry numeric="@(true)"
+                       @ref="XInputBox"
+                       id="gridSizeX" 
+                       Value:bind=@GridManager.Instance.GridSizeX 
+                       placeholder="Enter Grid Size X" />
+        </div>
+
+        <!-- Grid Size Y -->
+        <div class="input-container">
+            <label for="gridSizeY">Grid Size Y:</label>
+            <TextEntry numeric="@(true)"
+                       @ref="YInputBox"
+                       id="gridSizeY" 
+                       Value:bind=@GridManager.Instance.GridSizeY
+                       placeholder="Enter Grid Size Y"/>
+        </div>
+    </div>
+</root>
+
+@code {
+    TextEntry XInputBox;
+    TextEntry YInputBox;
+}

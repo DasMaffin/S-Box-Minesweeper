@@ -30,8 +30,6 @@ public sealed class GameManager : Component
 		}
 	}
 	[Property] public CameraComponent MainCamera;
-	[Property] public PanelComponent WinPanel;
-	[Property] public PanelComponent LossPanel;
 	[Property] public GameObject CubePrefab;
 
 	[Property] private GameState gameState;
@@ -65,6 +63,7 @@ public sealed class GameManager : Component
 
 		ToggleLossPanel();
 		ToggleWinPanel();
+		DisableSettingsHUD();
 
 		base.OnAwake();
 	}
@@ -74,9 +73,26 @@ public sealed class GameManager : Component
 		if ( Input.Pressed("F12") )
 			Game.TakeScreenshot();
 
+
 		base.OnUpdate();
 	}
 
+	public bool GenerateMinefield()
+	{
+		foreach (GridCell cell in Grid.GlobalGrid.GridCells)
+		{
+			int random = Random.Shared.Int(0, 100);
+			cell.HasBomb = random < 10 ? true : false;
+		}
+		GameState = GameState.Gaming;
+		return true;
+	}
+
+	#region UIHandling
+
+	[Property] public PanelComponent WinPanel;
+	[Property] public PanelComponent LossPanel;
+	[Property] public PanelComponent SettingsPanel;
 	public void ToggleWinPanel()
 	{
 		WinPanel.Enabled = !WinPanel.Active;
@@ -96,16 +112,17 @@ public sealed class GameManager : Component
 		LossPanel.Enabled = true;
 	}
 
-	public bool GenerateMinefield()
+	public void EnableSettingsHUD()
 	{
-		foreach (GridCell cell in Grid.GlobalGrid.GridCells)
-		{
-			int random = Random.Shared.Int(0, 100);
-			cell.HasBomb = random < 10 ? true : false;
-		}
-		GameState = GameState.Gaming;
-		return true;
+		SettingsPanel.Enabled = true;
 	}
+
+	public void DisableSettingsHUD()
+	{
+		SettingsPanel.Enabled = false;
+	}
+
+	#endregion
 }
 
 public class GameManagerRazor

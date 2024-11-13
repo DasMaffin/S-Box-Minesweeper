@@ -21,6 +21,9 @@ public sealed class GridManager : Component
 		}
 	}
 
+	public int GridSizeX = 5;
+	public int GridSizeY = 5;
+
 	protected override void OnAwake()
 	{
 		Assert.NotNull(GameManager.Instance.CubePrefab);
@@ -41,7 +44,7 @@ public sealed class GridManager : Component
 			}
 		}
 
-		Grid.GlobalGrid = new Grid(50f, 5, 5);
+		Grid.GlobalGrid = new Grid(50f, GridSizeX, GridSizeY);
 
 
 		for ( int i = 0; i < Grid.GlobalGrid.GridSizeX; i++ )

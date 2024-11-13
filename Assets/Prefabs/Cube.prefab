@@ -26,6 +26,7 @@
       {
         "__type": "Sandbox.Rigidbody",
         "__guid": "7f0ab22b-9ad5-45b7-99c4-1504c2e2f4e9",
+        "__enabled": false,
         "AngularDamping": 0,
         "Gravity": true,
         "LinearDamping": 0,
