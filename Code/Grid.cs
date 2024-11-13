@@ -21,8 +21,8 @@ public sealed class GridManager : Component
 		}
 	}
 
-	public int GridSizeX = 5;
-	public int GridSizeY = 5;
+	[Property] public int GridSizeX = 5;
+	[Property] public int GridSizeY = 5;
 
 	protected override void OnAwake()
 	{

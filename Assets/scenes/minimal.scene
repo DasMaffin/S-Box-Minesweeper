@@ -240,7 +240,9 @@
       "Components": [
         {
           "__type": "GridManager",
-          "__guid": "d810b37f-655d-4d7a-9a25-ed3750152ad5"
+          "__guid": "d810b37f-655d-4d7a-9a25-ed3750152ad5",
+          "GridSizeX": 10,
+          "GridSizeY": 10
         }
       ]
     },
