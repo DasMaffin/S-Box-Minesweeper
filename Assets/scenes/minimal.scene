@@ -194,11 +194,28 @@
         {
           "__type": "GameManager",
           "__guid": "61daf136-185e-4c13-934c-47870d972573",
+          "CubePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/cube.prefab"
+          },
+          "gameState": "PreGame",
+          "LossPanel": {
+            "_type": "component",
+            "component_id": "0eb8bcc0-b4f1-4b7d-96cb-f1a8e5f5c631",
+            "go": "59ff9acc-e5e2-4acc-be32-c711c36be922",
+            "component_type": "LossPanel"
+          },
           "MainCamera": {
             "_type": "component",
             "component_id": "cf3cbf96-22b6-4be4-a5d0-672a96c17f9f",
             "go": "3ee1c9f4-07be-4e0b-8b23-67bee2d8ec8a",
             "component_type": "CameraComponent"
+          },
+          "WinPanel": {
+            "_type": "component",
+            "component_id": "22adad8c-c04f-451b-8d02-34e50c75de5f",
+            "go": "342c91cf-de57-4486-ac96-bcacb4089413",
+            "component_type": "WinPanel"
           }
         }
       ]
@@ -212,11 +229,7 @@
       "Components": [
         {
           "__type": "GridManager",
-          "__guid": "d810b37f-655d-4d7a-9a25-ed3750152ad5",
-          "CubePrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/cube.prefab"
-          }
+          "__guid": "d810b37f-655d-4d7a-9a25-ed3750152ad5"
         }
       ]
     },
@@ -247,6 +260,19 @@
             {
               "__type": "Sandbox.WinPanel",
               "__guid": "22adad8c-c04f-451b-8d02-34e50c75de5f"
+            }
+          ]
+        },
+        {
+          "__guid": "59ff9acc-e5e2-4acc-be32-c711c36be922",
+          "Flags": 0,
+          "Name": "LossPanel",
+          "Enabled": true,
+          "NetworkMode": 0,
+          "Components": [
+            {
+              "__type": "Sandbox.LossPanel",
+              "__guid": "0eb8bcc0-b4f1-4b7d-96cb-f1a8e5f5c631"
             }
           ]
         }

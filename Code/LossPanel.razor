@@ -4,7 +4,7 @@
 @namespace Sandbox
 
 <root>
-    <h1>YOU WIN!</h1>
+    <h1>YOU LOSE!</h1>
     <div class="options">
         <div class="button" onclick="@(() => HandleClick())">
             Start Over
@@ -16,10 +16,10 @@
 {
     void HandleClick()
     {
-        GameManagerRazor.Instance.ToggleWinPanel();
+        GameManagerRazor.Instance.ToggleLossPanel();
         GameManagerRazor.Instance.GameState = GameState.PreGame;
         GridManager.Instance.GenerateGrid();
     }
 
-    protected override int BuildHash() => System.HashCode.Combine( "8" );
+    protected override int BuildHash() => System.HashCode.Combine("8");
 }

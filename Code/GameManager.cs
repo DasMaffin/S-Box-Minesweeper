@@ -1,5 +1,6 @@
 using Sandbox;
 using System;
+using System.Text.RegularExpressions;
 
 public enum GameState
 {
@@ -25,30 +26,35 @@ public sealed class GameManager : Component
 				value.Destroy();
 			}
 			instance = value;
+			GameManagerRazor.Instance = instance;
 		}
 	}
-	[Property]
-	public CameraComponent MainCamera;
-	private GameState gameState;
-	public GameState GameState {  get => gameState;
+	[Property] public CameraComponent MainCamera;
+	[Property] public PanelComponent WinPanel;
+	[Property] public PanelComponent LossPanel;
+	[Property] public GameObject CubePrefab;
+
+	[Property] private GameState gameState;
+	public GameState GameState {  
+		get => gameState;
 		set
 		{ 
 			gameState = value;
+			Log.Info($"Gamestate changed to {value}");
 			switch ( gameState )
 			{
 				case GameState.PreGame:
 				case GameState.Gaming:
 					break;
 				case GameState.Win:
-					Log.Error("Show a win screen you dulli.");
+					ToggleWinPanel();
 					break;
 				case GameState.Loss:
-					Log.Error("Show a loss screen you dulli.");
+					ToggleLossPanel();
 					break;
 			}
 		}
 	}
-	public bool GeneratedField = false;
 
 	protected override void OnAwake()
 	{
@@ -57,7 +63,8 @@ public sealed class GameManager : Component
 		Mouse.Visible = true;
 		GameState = GameState.PreGame;
 
-		_ = new WinPanel();
+		ToggleLossPanel();
+		ToggleWinPanel();
 
 		base.OnAwake();
 	}
@@ -70,6 +77,16 @@ public sealed class GameManager : Component
 		base.OnUpdate();
 	}
 
+	public void ToggleWinPanel()
+	{
+		WinPanel.Enabled = !WinPanel.Active;
+	}
+
+	public void ToggleLossPanel()
+	{
+		LossPanel.Enabled = !LossPanel.Active;
+	}
+
 	public bool GenerateMinefield()
 	{
 		foreach (GridCell cell in Grid.GlobalGrid.GridCells)
@@ -79,5 +96,18 @@ public sealed class GameManager : Component
 		}
 		GameState = GameState.Gaming;
 		return true;
+	}
+}
+
+public class GameManagerRazor
+{
+	private static GameManager instance;
+	public static GameManager Instance 
+	{
+		get => instance;
+		set
+		{
+			instance = value;
+		}
 	}
 }

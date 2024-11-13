@@ -1,31 +1,64 @@
 using Sandbox;
 using Sandbox.Diagnostics;
 using System.Collections;
+using static Sandbox.PhysicsGroupDescription.BodyPart;
 public sealed class GridManager : Component
 {
-	[Property]
-	GameObject CubePrefab { get; set; }
+	private static GridManager instance;
+	public static GridManager Instance
+	{
+		get
+		{
+			return instance;
+		}
+		set
+		{
+			if ( instance != null )
+			{
+				value.Destroy();
+			}
+			instance = value;
+		}
+	}
 
 	protected override void OnAwake()
 	{
-		Assert.NotNull(CubePrefab);
+		Assert.NotNull(GameManager.Instance.CubePrefab);
+
+		GenerateGrid();
+		Instance = this;
+
+		base.OnAwake();
+	}
+
+	public void GenerateGrid()
+	{
+		if ( Grid.GlobalGrid.Count() > 0 )
+		{
+			foreach ( GridCell cell in Grid.GlobalGrid )
+			{
+				cell.GameObject?.Destroy();
+			}
+		}
 
 		Grid.GlobalGrid = new Grid(50f, 5, 5);
+
+
 		for ( int i = 0; i < Grid.GlobalGrid.GridSizeX; i++ )
 		{
 			for ( int j = 0; j < Grid.GlobalGrid.GridSizeY; j++ )
 			{
 				GridCell cell = new GridCell(i, j);
-				GameObject cube = CubePrefab.Clone(this.GameObject, cell.Position, Rotation.Identity, new Vector3(1, 1, 1));
+				GameObject cube = GameManager.Instance.CubePrefab.Clone(this.GameObject, cell.Position, Rotation.Identity, new Vector3(1, 1, 1));
 				GridCell c = cube.GetComponent<GridCell>();
 				c.XIndex = i;
 				c.YIndex = j;
 				c.Position = cell.Position;
+				c.HasBomb = false;
+				c.Shown = false;
 				Grid.GlobalGrid.AddCell(cube.GetComponent<GridCell>());
 			}
 		}
-
-		base.OnAwake();
 	}
 }
 
@@ -84,7 +117,7 @@ public class GridCell : Component
 
 	public override string ToString()
 	{
-		return $"(X, Y): ({Position.x}, {Position.y})";
+		return $"(X, Y): ({XIndex}, {YIndex})";
 	}
 }
 

@@ -18,17 +18,17 @@ public sealed class MineController : Component
 
 	protected override void OnUpdate()
 	{
+		if ( GameManager.Instance.GameState == GameState.Loss || GameManager.Instance.GameState == GameState.Win ) return;
 		if ( Input.Pressed("attack1") )
 		{
 			var ray = GameManager.Instance.MainCamera.ScreenPixelToRay(Mouse.Position);
 			var trace = Scene.Trace.Ray(ray, 5000f).Run();
 			if ( trace.Hit && trace.GameObject == this.GameObject )
 			{
-				if ( !GameManager.Instance.GeneratedField )
+				if ( GameManager.Instance.GameState == GameState.PreGame )
 				{
 					GameManager.Instance.GenerateMinefield();
 					MyCell.HasBomb = false;
-					GameManager.Instance.GeneratedField = true;
 				}
 
 
