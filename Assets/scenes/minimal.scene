@@ -181,6 +181,11 @@
           "__type": "Sandbox.Sharpen",
           "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
           "Scale": 0.2
+        },
+        {
+          "__type": "CameraController",
+          "__guid": "f86cea49-1a30-4bba-a169-4e3cc0ef30fd",
+          "moveSpeed": 200
         }
       ]
     },
