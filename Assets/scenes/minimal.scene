@@ -78,7 +78,7 @@
       "__guid": "6ad70641-3c6c-4402-9c85-9a4969af4764",
       "Flags": 0,
       "Name": "Plane",
-      "Scale": "5,5,5",
+      "Scale": "100,100,5",
       "Enabled": true,
       "NetworkMode": 0,
       "Components": [
@@ -213,7 +213,7 @@
           },
           "SettingsPanel": {
             "_type": "component",
-            "component_id": "551ce234-adb1-463a-a57e-78ff692984d6",
+            "component_id": "3b6309cd-e6cf-40bb-9beb-868208160d69",
             "go": "91fa33b3-9596-4839-a9e8-77e900dad897",
             "component_type": "SettingsHUD"
           },
@@ -330,19 +330,7 @@
               "Components": [
                 {
                   "__type": "SettingsHUD",
-                  "__guid": "551ce234-adb1-463a-a57e-78ff692984d6"
-                }
-              ]
-            },
-            {
-              "__guid": "63cae65a-cbdb-4e62-be27-70f5c2148cf2",
-              "Flags": 0,
-              "Name": "TestUI",
-              "Components": [
-                {
-                  "__type": "Sandbox.TestUI",
-                  "__guid": "efab0c2c-1f28-45a2-8f8d-2f9998d510a3",
-                  "MyStringValue": "Hello World!"
+                  "__guid": "3b6309cd-e6cf-40bb-9beb-868208160d69"
                 }
               ]
             }
