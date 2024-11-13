@@ -1,0 +1,23 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+    <h1>YOU WIN!</h1>
+    <div class="options">
+        <div class="button" onclick="@(() => HandleClick())">
+            Resume
+        </div>
+    </div>
+</root>
+
+@code
+{
+    void HandleClick()
+    {
+        Log.Info("I HAVE BEEN CLICKED!");
+    }
+
+    protected override int BuildHash() => System.HashCode.Combine( "8" );
+}
