@@ -45,7 +45,7 @@ public sealed class GameManager : Component
 				case GameState.Gaming:
 					break;
 				case GameState.Win:
-					AchievementManager.Instance.ProgressAchievement("20_wins");
+					if(Grid.GlobalGrid.Count() >= 100) AchievementManager.Instance.ProgressAchievement("20_wins");
 					if ( Grid.GlobalGrid.TotalBombs >= 20 ) AchievementManager.Instance.ProgressAchievement("20_mines");
 					EnableWinPanel();
 					break;
