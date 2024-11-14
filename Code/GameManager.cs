@@ -45,6 +45,8 @@ public sealed class GameManager : Component
 				case GameState.Gaming:
 					break;
 				case GameState.Win:
+					AchievementManager.Instance.ProgressAchievement("20_wins");
+					if ( Grid.GlobalGrid.TotalBombs >= 20 ) AchievementManager.Instance.ProgressAchievement("20_mines");
 					EnableWinPanel();
 					break;
 				case GameState.Loss:
@@ -64,6 +66,14 @@ public sealed class GameManager : Component
 		ToggleLossPanel();
 		ToggleWinPanel();
 		DisableSettingsHUD();
+
+		foreach ( Achievement achievement in AchievementManager.Instance.GetAchievements() )
+		{
+			achievement.OnUnlocked += (ach) => {
+				// TODO Handle UI or reward logic here
+				Log.Info($"Player unlocked achievement: {ach.Name}");
+			};
+		}
 
 		base.OnAwake();
 	}

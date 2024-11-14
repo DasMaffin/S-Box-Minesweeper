@@ -79,6 +79,7 @@ public class GridCell : Component
 		set
 		{
 			//GetComponent<ModelRenderer>().Tint = value ? Color.White : Color.Black;
+			if ( value ) Grid.GlobalGrid.TotalBombs++;
 
 			hasBomb = value;
 		} 
@@ -133,6 +134,7 @@ public class Grid : IEnumerable<GridCell>
 	// The size of the grid as GridSizeX x GridSizeY
 	public int GridSizeX { get; set; }
 	public int GridSizeY { get; set; }
+	public int TotalBombs { get; set; }
 
 	public List<GridCell> GridCells = new List<GridCell>();
 
@@ -142,6 +144,7 @@ public class Grid : IEnumerable<GridCell>
 		GridSizeX = _gridSizeX;
 		GridSizeY = _gridSizeY;
 		GridCells = new List<GridCell>();
+		TotalBombs = 0;
 	}
 
 	public bool GameFinished()

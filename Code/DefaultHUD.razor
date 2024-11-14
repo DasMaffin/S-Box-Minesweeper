@@ -3,7 +3,7 @@
 @inherits PanelComponent
 @namespace Sandbox
 <root>
-	<div class="title" onclick="@(() => OpenSettings())">⚙</div>
+    <div class="title" onclick="@(() => OpenSettings())">⚙</div>
     <div class="manual">
         <div class="entry">Manual:</div>
         <div class="entry">Left-Click: Check if there is a mine on the hovered field.</div>
@@ -14,18 +14,20 @@
         <div class="entry">Click a field to display how many mines there are in adjacent fields.</div>
         <div class="entry">Uncover every field to win.</div>
         <div class="entry">Click on a mine, lose.</div>
+        <div class="entry">Total Mines: @Grid.GlobalGrid.TotalBombs</div>
     </div>
 </root>
 
 @code
 {
+
     private void OpenSettings()
     {
         GameManagerRazor.Instance.EnableSettingsHUD();
     }
 
 	/// <summary>
-	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
-	/// </summary>
-	protected override int BuildHash() => System.HashCode.Combine( "0" );
+    /// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+    /// </summary>
+    protected override int BuildHash() => System.HashCode.Combine(Grid.GlobalGrid.TotalBombs);
 }
